@@ -1,0 +1,17 @@
+name: Snyk example 
+on: push
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: snyk/actions/setup@master
+    - uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '5.0.x'
+    - name: Dotnet Restore
+      run: dotnet restore Oqtane.sln
+    - name: Snyk Monitor 
+      run: snyk monitor --all-projects --org=demo-ci
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
