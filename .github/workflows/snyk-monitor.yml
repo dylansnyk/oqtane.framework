@@ -1,4 +1,4 @@
-name: Snyk example 
+name: Snyk example 2
 on: push
 jobs:
   security:
